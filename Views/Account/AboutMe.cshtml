@@ -1,0 +1,44 @@
+﻿@model AppUser
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <!-- Título -->
+            <h2 class="text-center display-4 mb-4 text-primary">
+                <i class="bi bi-person-circle"></i> @Model.Name @Model.LastName Info
+            </h2>
+
+            <!-- Tarjeta de Información -->
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4 class="mb-0">
+                        <i class="bi bi-person-fill"></i> @Model.Name @Model.LastName
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <strong>Id: </strong> @Model.Id
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Username:</strong> @Model.UserName
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Email:</strong> <a href="mailto:@Model.Email" class="text-decoration-none text-dark">@Model.Email</a>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Phone:</strong> <a href="tel:@Model.PhoneNumber" class="text-decoration-none text-dark">@Model.PhoneNumber</a>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Genero:</strong> @Model.Genero
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-footer text-center">
+                    <button class="btn btn-outline-primary btn-sm mx-1">Edit Profile</button>
+                    <button class="btn btn-outline-danger btn-sm mx-1">Delete User</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

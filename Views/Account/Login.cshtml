@@ -1,0 +1,56 @@
+﻿@using ITHelpDeskClient.Models.ViewModels
+@model LoginVM
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container d-flex align-items-center justify-content-center mt-5">
+    <div class="col-md-6 col-xl-4 card shadow-lg p-4 border-0">
+        <!-- Encabezado con un icono -->
+        <h2 class="text-center text-capitalize text-primary mb-4">
+            <i class="fas fa-sign-in-alt"></i> Login
+        </h2>
+
+        <form asp-action="Login" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Campo de Usuario -->
+            <div class="mb-3">
+                <label asp-for="Username" class="form-label">Username</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-primary text-white">
+                        <i class="fas fa-user"></i>
+                    </span>
+                    <input asp-for="Username" type="text" class="form-control" placeholder="Enter username" />
+                </div>
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+
+            <!-- Campo de Contraseña -->
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label">Password</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-primary text-white">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                    <input asp-for="Password" type="password" class="form-control" placeholder="Enter password" />
+                </div>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <!-- Checkbox de Remember Me -->
+            <div class="form-check my-3">
+                <input asp-for="RememberMe" class="form-check-input" />
+                <label asp-for="RememberMe" class="form-check-label">
+                    @Html.DisplayNameFor(m => m.RememberMe)
+                </label>
+            </div>
+
+            <!-- Botones -->
+            <div class="d-flex justify-content-between align-items-center">
+                <a asp-action="Register" class="text-decoration-none">Create a new account</a>
+                <input type="submit" class="btn btn-primary btn-sm" value="Login" />
+            </div>
+        </form>
+    </div>
+</div>

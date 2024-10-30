@@ -1,0 +1,117 @@
+﻿@using ITHelpDeskClient.Models.ViewModels
+@model RegisterVM
+
+<div class="container d-flex align-items-center justify-content-center mt-5 mx-auto">
+    <div class="col-md-8 col-xl-7 card shadow-lg border-0 p-4">
+        <h2 class="text-center text-capitalize text-primary mb-3">
+            <i class="fas fa-user-plus"></i> Register
+        </h2>
+        <hr>
+
+        <form asp-action="Register" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Primera Fila: Nombre y Apellido -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="FirstName" class="form-label">First Name</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-primary text-white">
+                            <i class="fas fa-user"></i>
+                        </span>
+                        <input asp-for="FirstName" type="text" class="form-control" placeholder="Enter first name" />
+                    </div>
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="LastName" class="form-label">Last Name</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-primary text-white">
+                            <i class="fas fa-user"></i>
+                        </span>
+                        <input asp-for="LastName" type="text" class="form-control" placeholder="Enter last name" />
+                    </div>
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!-- Segunda Fila: Username y Género -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="UserName" class="form-label">Username</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-primary text-white">
+                            <i class="fas fa-signature"></i>
+                        </span>
+                        <input asp-for="UserName" type="text" class="form-control" placeholder="Enter username" />
+                    </div>
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Genre" class="form-label">Genre</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-primary text-white">
+                            <i class="fas fa-venus-mars"></i>
+                        </span>
+                        <select asp-for="Genre" class="form-control" asp-items="Html.GetEnumSelectList<Genero>()"></select>
+                    </div>
+                    <span asp-validation-for="Genre" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!-- Tercera Fila: Email y Teléfono -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Email" class="form-label">Email</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-primary text-white">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <input asp-for="Email" type="email" class="form-control" placeholder="Enter email" />
+                    </div>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="PhoneNumber" class="form-label">Phone Number</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-primary text-white">
+                            <i class="fas fa-phone"></i>
+                        </span>
+                        <input asp-for="PhoneNumber" type="tel" class="form-control" placeholder="Enter phone number" />
+                    </div>
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!-- Cuarta Fila: Contraseña y Confirmación de Contraseña -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Password" class="form-label">Password</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-primary text-white">
+                            <i class="fas fa-key"></i>
+                        </span>
+                        <input asp-for="Password" type="password" class="form-control" placeholder="Enter password" />
+                    </div>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="ConfirmPassword" class="form-label">Confirm Password</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-primary text-white">
+                            <i class="fas fa-key"></i>
+                        </span>
+                        <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Confirm password" />
+                    </div>
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!-- Botones de Enviar y Enlace de Login -->
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <a asp-action="Login" class="text-decoration-none">Do you already have an account?</a>
+                <input type="submit" class="btn btn-primary btn-sm" value="Register" />
+            </div>
+        </form>
+    </div>
+</div>
