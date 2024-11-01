@@ -11,6 +11,7 @@ namespace ITHelpDeskClient.Controllers
 {
     public class RequestController : Controller
     {
+
         private readonly UserManager<AppUser> _userManager;
         private readonly AppDbContext _context;
 
