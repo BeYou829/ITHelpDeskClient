@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container-fluid d-flex align-items-center justify-content-center">
+    <div class="text-center">
+        <h1 class="display-4 mb-4">Bienvenido al Sistema de Tickets</h1>
+        <p class="lead mb-5">Seleccione una de las siguientes opciones para continuar:</p>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm d-flex flex-column">
+                    <a href="@Url.Action("CreateTicket")" class="text-decoration-none text-dark">
+                        <img src="~/images/create.jpeg" class="card-img-top img-fluid" alt="Crear Ticket" style="height: 200px; object-fit: cover;" />
+                        <div class="card-body d-flex flex-column flex-grow-1">
+                            <h5 class="card-title">Crear un Nuevo Ticket</h5>
+                            <p class="card-text">Inicie un nuevo ticket para registrar su problema o solicitud.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm d-flex flex-column">
+                    <a href="@Url.Action("ListTicket")" class="text-decoration-none text-dark">
+                        <img src="~/images/list.jpeg" class="card-img-top img-fluid" alt="Ver Mis Tickets" style="height: 200px; object-fit: cover;" />
+                        <div class="card-body d-flex flex-column flex-grow-1">
+                            <h5 class="card-title">Ver Mis Tickets</h5>
+                            <p class="card-text">Acceda a todos los tickets que ha creado y consulte su estado.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm d-flex flex-column">
+                    <a href="@Url.Action("Profile")" class="text-decoration-none text-dark">
+                        <img src="~/images/perfil.jpg" class="card-img-top img-fluid" alt="Ver Perfil" style="height: 221px; object-fit: cover;" />
+                        <div class="card-body d-flex flex-column flex-grow-1">
+                            <h5 class="card-title">Ver Perfil</h5>
+                            <p class="card-text">Revise y edite su información personal y de contacto.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -24,3 +24,13 @@ body {
     /*color-scheme: dark;*/
     
 }
+.nav-link{
+    color:white !important;
+}
+.custom-container{
+    width:80%;
+    height:70vh;
+}
+.card-header-custom {
+    background-color: #0056b3 !important;
+}

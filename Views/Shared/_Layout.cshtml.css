@@ -55,11 +55,11 @@ button.accept-policy {
 }
 
 .footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     white-space: nowrap;
-    line-height: 60px;
+    line-height: 40px;
     background-color: #e0e0e0; /* Color de fondo del pie de página */
     color: #ffffff; /* Color de texto blanco para el pie de página */
 }

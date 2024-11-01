@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Confirmación de Ticket";
+}
+
+<div class="container custom-container">
+    <h2 class="text-center display-4 mb-3">Confirmación de Ticket</h2>
+    <div class="card p-3 shadow-lg">
+        <div class="card-body text-center">
+            <h5 class="mb-3 text-success">¡Su ticket ha sido creado con éxito!</h5>
+            <p class="lead">Gracias por su solicitud. Un representante se pondrá en contacto con usted pronto.</p>
+            <a href="@Url.Action("CreateTicket", "Request")" class="btn btn-primary">Crear un Nuevo Ticket</a>
+        </div>
+    </div>
+</div>

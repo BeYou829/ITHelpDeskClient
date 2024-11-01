@@ -12,5 +12,6 @@ namespace ITHelpDeskClient.Data
         {
             
         }
+        public DbSet<Request> Requests { get; set; }
     }
 }
