@@ -4,7 +4,16 @@
 @{
     ViewBag.Title = "Lista de Tickets";
 }
-
+<style>
+    .table thead th {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .table td, .table th {
+        max-width: 150px; /* Ajusta el ancho según tus necesidades */
+    }
+</style>
 <div class="container custom-container">
     <h2 class="text-center display-4 mb-4">Lista de Tickets</h2>
 
@@ -17,10 +26,10 @@
             <table class="table table-hover table-striped mb-0">
                 <thead class="table-light">
                     <tr class="text-center">
+                        <th scope="col">Número de Ticket</th>
                         <th scope="col">Título</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Fecha de Creación</th>
-                        <th scope="col">Número de Ticket</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -73,12 +73,14 @@ namespace ITHelpDeskClient.Controllers
             {
                 return BadRequest("Invalid user ID format");
             }
-            var listOfRequest = await _context.Requests.Where(x => x.UserGuid == user.Id)
+            var listOfRequest = await _context.Requests
+                .Where(x => x.UserGuid == user.Id)
+                .OrderByDescending(x => x.CreatedOn)
                 .Select(x => new ListOfRequestVM
                 {
                     Title = x.Title!,
                     Description = x.Description!,
-                    CreatedOn = x.CreatedOn.ToString(),
+                    CreatedOn = x.CreatedOn.ToString("dd/MM/yy"),
                     RequestNumber = x.RequestNumber!
                 })
                 .ToListAsync();
