@@ -65,16 +65,26 @@ namespace ITHelpDeskClient.Controllers
             return View();
         }
         [HttpGet]
-        public async Task<IActionResult> ListTicket()
+        public async Task<IActionResult> ListTicket(string? searchTerm)
         {
             var user = await _userManager.GetUserAsync(User);
-           
+
             if (!Guid.TryParse(user!.Id, out var userGuid))
             {
                 return BadRequest("Invalid user ID format");
             }
-            var listOfRequest = await _context.Requests
-                .Where(x => x.UserGuid == user.Id)
+
+            //Consulta
+            var query = _context.Requests
+                .Where(x => x.UserGuid == user.Id);
+
+            // Aplica el filtro de búsqueda si hay un término de búsqueda
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                query = query.Where(x => x.Title!.Contains(searchTerm) || x.RequestNumber!.Contains(searchTerm));
+            }
+
+            var listOfRequest = await query
                 .OrderByDescending(x => x.CreatedOn)
                 .Select(x => new ListOfRequestVM
                 {
@@ -84,7 +94,12 @@ namespace ITHelpDeskClient.Controllers
                     RequestNumber = x.RequestNumber!
                 })
                 .ToListAsync();
+
+            // Guarda el término de búsqueda en ViewBag para que el campo de búsqueda lo mantenga
+            ViewBag.SearchTerm = searchTerm;
+
             return View(listOfRequest);
         }
+
     }
 }

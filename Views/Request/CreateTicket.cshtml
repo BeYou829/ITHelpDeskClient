@@ -8,6 +8,11 @@
 <div class="container custom-container">
     <h2 class="text-center display-4 mb-3">Crear Nuevo Ticket</h2>
     <form class="card p-3 shadow-lg" asp-action="Create" method="post">
+
+        <div class="card-header text-end">
+            <a asp-action="MainRequest"  value="Crear Ticket" class="btn btn-close"></a>
+        </div>
+
         <div class="card-body">
             <h5 class="mb-3 text-secondary">Información del Usuario</h5>
             <div class="form-group row">
