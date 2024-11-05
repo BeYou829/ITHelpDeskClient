@@ -1,0 +1,54 @@
+﻿@using ITHelpDeskClient.Models.ViewModels
+@model TicketDetails
+@{
+    ViewBag.Title = "Detalles del Ticket";
+}
+<div class=" container custom-container">
+    <h2 class="display-4 text-center mb-4">Detalles del Ticket</h2>
+
+    <div class="container">
+        <div class="card shadow mb-4">
+            <div class="card-header bg-primary text-white card-header-custom">
+                <h5 class="mb-0 text-center">Información del Ticket</h5>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-sm-4">
+                        <strong>Número de Ticket:</strong>
+                        <p>@Model.TicketDetailsVM.RequestNumber</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <strong>Título:</strong>
+                        <p>@Model.TicketDetailsVM.Title</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <strong>Estado:</strong>
+                        <p>@Model.TicketDetailsVM.Status</p>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-4">
+                        <strong>Tipo de Solicitud:</strong>
+                        <p>@Model.TicketDetailsVM.RequestType</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <strong>Fecha de Creación:</strong>
+                        <p>@Model.TicketDetailsVM.CreatedOn.ToString("dd/MM/yyyy")</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <strong>Ticket creado por:</strong>
+                        <p>@Model.User!.UserName</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <strong>Descripción:</strong>
+                        <p>@Model.TicketDetailsVM.Description</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a asp-action="ListTicket" class="btn btn-primary">Volver a la Lista de Tickets</a>
+    </div>
+</div>

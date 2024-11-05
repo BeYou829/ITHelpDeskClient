@@ -3,6 +3,7 @@
 
 @{
     ViewBag.Title = "Lista de Tickets";
+
 }
 <style>
     .table thead th {
@@ -34,7 +35,7 @@
         </div>
 
         <div class="table-responsive">
-            <table class="table table-hover table-striped mb-0">
+            <table id="myTable" class="table table-hover table-striped mb-0">
                 <thead class="table-light">
                     <tr class="text-center">
                         <th scope="col">Número de Ticket</th>
@@ -49,10 +50,12 @@
                         @foreach (var ticket in Model)
                         {
                             <tr>
-                                <td class="align-middle text-center">@ticket.RequestNumber</td>
+
+                                <td class="align-middle text-center"><a class="text-decoration-none" href="@Url.Action("Details", "Request", new { id = ticket.RequestNumber })">@ticket.RequestNumber</a></td>
                                 <td class="align-middle">@ticket.Title</td>
                                 <td class="align-middle">@ticket.Description</td>
                                 <td class="align-middle text-center">@ticket.CreatedOn</td>
+                            
                             </tr>
                         }
                     }
@@ -67,3 +70,4 @@
         </div>
     </div>
 </div>
+
