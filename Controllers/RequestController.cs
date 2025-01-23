@@ -100,6 +100,33 @@ namespace ITHelpDeskClient.Controllers
 
             return View(listOfRequest);
         }
+        public async Task<IActionResult> Details(string? id)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (string.IsNullOrEmpty(id))
+            {
+                return NotFound();
+            }
 
+            var request = await _context.Requests
+                .Where(x => x.RequestNumber == id)
+                .Select(x => new TicketDetails
+                {
+                    User = user,
+                    TicketDetailsVM = new TicketDetailsVM
+                    {
+                        RequestNumber = x.RequestNumber!,
+                        Title = x.Title!,
+                        CreatedOn = x.CreatedOn,
+                        Status = x.Status.ToString(),
+                        Description = x.Description!,
+                        RequestType = x.RequestType.ToString(),
+                    }
+
+                })
+                .FirstOrDefaultAsync();
+            Console.WriteLine(request);
+            return View(request);
+        }
     }
 }
