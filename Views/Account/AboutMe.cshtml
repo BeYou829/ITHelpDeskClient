@@ -35,9 +35,32 @@
                     </ul>
                 </div>
                 <div class="card-footer text-center">
-                    <button class="btn btn-outline-primary btn-sm mx-1">Edit Profile</button>
-                    <button class="btn btn-outline-danger btn-sm mx-1">Delete User</button>
+                    <a href="@Url.Action("AboutMeEdit")" class="btn btn-outline-primary btn-sm mx-1">Cambiar Contraseña</a>
+                    <button class="btn btn-outline-success btn-sm mx-1" data-bs-toggle="modal" data-bs-target="#detalleModal">Mostrar detalles</button>
+
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="detalleModal" tabindex="-1" aria-labelledby="detalleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="detalleModalLabel">Información de @Model.UserName</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <strong>Nombre:</strong>
+                <i>@Model.Name</i>
+                <i>@Model.LastName</i> <br />
+                <strong>Correo Electrónico:</strong>
+                <i>@Model.Email</i>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
+                <button type="button" class="btn btn-primary">Guardar cambios</button>
             </div>
         </div>
     </div>

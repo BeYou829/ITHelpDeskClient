@@ -1,14 +1,19 @@
-﻿using ITHelpDeskClient.Data;
+﻿using CsvHelper;
+using ITHelpDeskClient.Data;
 using ITHelpDeskClient.Models;
 using ITHelpDeskClient.Models.ViewModels;
+using ITHelpDeskClient.Services.Export;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.EntityFrameworkCore;
+using System.Text;
 using ViewModels;
 
 namespace ITHelpDeskClient.Controllers
 {
+    [Authorize]
     public class RequestController : Controller
     {
 
@@ -127,6 +132,23 @@ namespace ITHelpDeskClient.Controllers
                 .FirstOrDefaultAsync();
             Console.WriteLine(request);
             return View(request);
+        }
+
+        public async Task<IActionResult> ExportTickets()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var requests = await _context.Requests
+                .Where(x => x.UserGuid == user!.Id)
+                .ToListAsync();
+
+            var export = new ExportCSV();
+            var fileCsv = export.GenerateCsv(requests);
+            var byteArray = Encoding.UTF32.GetBytes(fileCsv);
+
+            var fileName = $"{user!.UserName} Request Reports {DateTime.Now:ddMMyyhhmmss}.csv";
+
+            
+            return File(byteArray, "text/csv", fileName);
         }
     }
 }

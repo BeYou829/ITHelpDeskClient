@@ -27,10 +27,41 @@ body {
 .nav-link{
     color:white !important;
 }
-.custom-container{
+/*.custom-container{
     width:80%;
     height:70vh;
+}*/
+
+
+.custom-container {
+    min-height: 70vh; /* Para pantallas grandes */
+    width: 80%;
+}
+@media (max-width: 1024px) {
+    .custom-container {
+        min-height: 50vh; /* Para pantallas medianas */
+        width: 100%;
+    }
+}
+@media (max-width: 768px) {
+    .custom-container {
+        min-height: 50vh; /* Para pantallas medianas */
+        width:100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .custom-container {
+        min-height: 40vh; /* Para pantallas pequeñas */
+        padding-bottom: 50px; /* Espacio para el footer */
+        width: 100%;
+    }
 }
 .card-header-custom {
     background-color: #0056b3 !important;
+}
+@media (max-width: 768px) {
+    .table-responsive {
+        display: none;
+    }
 }

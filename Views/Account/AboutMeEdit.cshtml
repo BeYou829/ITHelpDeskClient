@@ -1,0 +1,103 @@
+﻿@using ITHelpDeskClient.Models.ViewModels
+@model EditUserVM
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <!-- Título -->
+            <h2 class="text-center display-4 mb-4">
+                <i class="bi bi-person-circle"></i> Editar Información de @Model.Name @Model.LastName
+            </h2>
+
+            <!-- Tarjeta de Información -->
+            <div class="card shadow-lg border-0 mb-5">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4 class="mb-0">
+                        <i class="bi bi-person-fill"></i> Información del Usuario
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="AboutMeEdit" method="post">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label asp-for="Name" class="form-label">Nombre</label>
+                                <input asp-for="Name" class="form-control" readonly />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="LastName" class="form-label">Apellido</label>
+                                <input asp-for="LastName" class="form-control" readonly />
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label asp-for="UserName" class="form-label">Nombre de Usuario</label>
+                                <input asp-for="UserName" class="form-control" readonly />
+                                <span asp-validation-for="UserName" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Email" class="form-label">Correo Electrónico</label>
+                                <input asp-for="Email" class="form-control" type="email" readonly />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label asp-for="PhoneNumber" class="form-label">Número de Teléfono</label>
+                                <input asp-for="PhoneNumber" class="form-control" readonly />
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Genero" class="form-label">Género</label>
+                                <select asp-for="Genero" class="form-select" disabled>
+                                    <option value="">Seleccione</option>
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Femenino">Femenino</option>
+                                    <option value="Otro">Otro</option>
+                                </select>
+                                <span asp-validation-for="Genero" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <h5>Cambiar Contraseña</h5>
+                            <div class="row">
+                                <div class="col-md-4 mb-2">
+                                    <label for="CurrentPassword" class="form-label">Contraseña Actual</label>
+                                    <input type="password" id="CurrentPassword" name="CurrentPassword" class="form-control" required />
+                                    <span asp-validation-for="CurrentPassword" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-md-4 mb-2">
+                                    <label for="NewPassword" class="form-label">Nueva Contraseña</label>
+                                    <input type="password" id="NewPassword" name="NewPassword" class="form-control" required />
+                                    <span asp-validation-for="NewPassword" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-md-4 mb-2">
+                                    <label for="ConfirmPassword" class="form-label">Confirmar Nueva Contraseña</label>
+                                    <input type="password" id="ConfirmPassword" name="ConfirmPassword" class="form-control" required />
+                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-end">
+                            <a href="@Url.Action("AboutMe","Account")" class="btn btn-info">Volver</a>
+                            <input type="submit" class="btn btn-primary" value="Guardar Cambios" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

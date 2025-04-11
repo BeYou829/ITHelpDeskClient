@@ -3,18 +3,45 @@
 
 @{
     ViewBag.Title = "Lista de Tickets";
-
 }
 <style>
+    .table-responsive {
+        overflow-x: auto;
+    }
+    
     .table thead th {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
     }
-
+    
     .table td, .table th {
-        max-width: 150px; /* Ajusta el ancho según tus necesidades */
+        max-width: 150px;
+    } 
+    .card-ticket {
+        display: block;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
+        .card-ticket h5 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .card-ticket .ticket-detail {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .card-ticket .ticket-number {
+            font-weight: bold;
+            color: #007bff;
+        }
+    
 </style>
 
 <div class="container custom-container">
@@ -25,6 +52,12 @@
             <div class="input-group">
                 <input type="text" name="searchTerm" class="form-control" placeholder="Buscar por título o número de ticket" value="@ViewBag.SearchTerm" />
                 <button class="btn btn-primary" type="submit">Buscar</button>
+                <a title="Volver a Inicio" href="@Url.Action("MainRequest", "Request")" class="btn btn-secondary ms-2">
+                    Volver
+                </a>
+                <a title="Exportar a CSV" href="@Url.Action("ExportTickets", "Request")" class="btn btn-success ms-2">
+                    Exportar
+                </a>
             </div>
         </form>
     </div>
@@ -34,7 +67,8 @@
             <strong>Tickets</strong>
         </div>
 
-        <div class="table-responsive">
+        <!-- Vista para pantallas grandes: Tabla -->
+        <div class="table-responsive d-none d-md-block">
             <table id="myTable" class="table table-hover table-striped mb-0">
                 <thead class="table-light">
                     <tr class="text-center">
@@ -50,12 +84,10 @@
                         @foreach (var ticket in Model)
                         {
                             <tr>
-
-                                <td class="align-middle text-center"><a class="text-decoration-none" href="@Url.Action("Details", "Request", new { id = ticket.RequestNumber })">@ticket.RequestNumber</a></td>
+                                <td class="align-middle text-center"><a title="Detales del ticket" class="text-decoration-none" href="@Url.Action("Details", "Request", new { id = ticket.RequestNumber })">@ticket.RequestNumber</a></td>
                                 <td class="align-middle">@ticket.Title</td>
                                 <td class="align-middle">@ticket.Description</td>
                                 <td class="align-middle text-center">@ticket.CreatedOn</td>
-                            
                             </tr>
                         }
                     }
@@ -68,6 +100,33 @@
                 </tbody>
             </table>
         </div>
+
+        <!-- Vista para pantallas pequeñas: Tarjetas -->
+        <div class="d-md-none">
+            @if (Model != null && Model.Count > 0)
+            {
+                @foreach (var ticket in Model)
+                {
+                    <div class="card-ticket">
+                        <h5 class="ticket-number">
+                            <a href="@Url.Action("Details", "Request", new { id = ticket.RequestNumber })" class="text-decoration-none">@ticket.RequestNumber</a>
+                        </h5>
+                        <p class="ticket-detail"><strong>Título:</strong> @ticket.Title</p>
+                        <p class="ticket-detail"><strong>Descripción:</strong> @ticket.Description</p>
+                        <p class="ticket-detail"><strong>Fecha de Creación:</strong> @ticket.CreatedOn</p>
+                    </div>
+                }
+            }
+            else
+            {
+                <p class="text-center p-4 text-muted">No hay tickets disponibles</p>
+            }
+        </div>
     </div>
 </div>
 
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

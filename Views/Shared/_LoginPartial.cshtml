@@ -1,15 +1,22 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<AppUser> SignInManager
 
+@{
+    string message;
+    var currentHour = DateTime.Now.Hour;
+
+    if ( currentHour >= 5 && currentHour < 12) { message = "Buenos días"; }
+    else if ( currentHour >= 12 && currentHour < 18 ) { message = "Buenas tardes"; }
+    else { message = "Buenas noches"; }
+}
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
         <li class="nav-item">
             <a href="@Url.Action("AboutMe", "Account", null)" id="manage" class="nav-link text-dark text-decoration-none" title="Manage">
                 <i class="fa-solid fa-user"></i>
-                Hello @User.Identity!.Name
+                @message @User.Identity!.Name
                 </a>
-            
         </li>
         <li class="nav-item">
             <a class="nav-link text-dark" asp-action="Logout" asp-controller="Account">
